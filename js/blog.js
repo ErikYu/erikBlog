@@ -9,7 +9,8 @@ $(function () {
 window.onload=function () {
     setBanner();
     communityLogoColor();
-    searchBoxFocusShadow()
+    searchBoxFocusShadow();
+    galleryLoad();
 };
 window.onresize=function () {
     setBanner();
@@ -99,3 +100,23 @@ function loadNote() {
         content.attr({"src":$(this).attr("href")});  //不需要返回上一级
     })
 }
+//相册页脚本
+//相册外框
+function galleryLoad() {
+    if(!document.getElementsByClassName('img-wrapper')) return false;
+    var elem=document.getElementsByClassName('img-wrapper');
+    for(i in elem){
+        elem[i].onmouseover=function () {
+            this.childNodes[1].style.display='block';
+            this.parentNode.style.visibility='visible';
+        };
+        elem[i].onmouseout=function () {
+            this.childNodes[1].style.display='none';
+            this.parentNode.style.visibility='hidden';
+        }
+    }
+}
+//相册幕布
+// function galleryCover() {
+//
+// }
