@@ -6,6 +6,7 @@
     <link rel="shortcut icon" href="img/minion.png">
     <link rel="stylesheet/less" type="text/css" href="css/main.less">
     <link rel="stylesheet/less" type="text/css" href="css/article.less">
+    <link rel="stylesheet" type="text/css" href="css/icons.css">
 </head>
 <body>
 
@@ -13,12 +14,15 @@
         <nav class="nav-bar">
             <h1>鱼小窝</h1>
             <ul>
-                <li><a href="index.html">注释</a></li>
+                <li><a href="index.html">主页</a></li>
                 <li><a href="#">皮卡</a></li>
                 <li><a href="#">咕噜</a></li>
                 <li></li>
             </ul>
-            <input id="searchBox" type="text" value="你想搜索的内容" />
+            <div id="searchZone">
+                <input id="searchBox" type="text" name="searchBox" value="输入你想搜索的内容" />
+                <span class="demoSpan1" id="searchBoxLogo"></span>
+            </div>
         </nav>
     </header>
     <article class="blog">
@@ -77,14 +81,5 @@
     <script src="js/less.js"></script>
     <script src="js/jquery-3.1.0.js"></script>
     <script src="js/blog.js"></script>
-    <script>
-//        $(function () {
-//            var button=$('.blog .title-col ul li');
-//            var content=$('.blog iframe');
-//            button.click(function () {
-//                content.attr({"src":$(this).attr("href")})
-//            })
-//        })
-    </script>
 </body>
 </html>

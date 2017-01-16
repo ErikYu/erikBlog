@@ -4,11 +4,12 @@
 $(function () {
     setBanner();
     loadNote();
-})
+});
 //主页脚本
 window.onload=function () {
     setBanner();
     communityLogoColor();
+    searchBoxFocusShadow()
 };
 window.onresize=function () {
     setBanner();
@@ -61,7 +62,33 @@ function communityLogoColor() {
         }
     }
 }
-
+//搜索框阴影效果
+function searchBoxFocusShadow() {
+    if(!document.getElementById('searchBox')) return false;
+    var elem=document.getElementById('searchBox');
+    elem.onfocus=function () {
+        addClass(this.parentNode, 'activeInput')
+    };
+    elem.onblur=function () {
+        removeClass(this.parentNode, 'activeInput')
+    }
+}
+//原生JS增加class属性的方法
+function addClass(elem, className) {
+    if(!elem.getAttribute('class')){           //可以使用className方法替代getAttribute()方法
+        elem.setAttribute('class', className)
+    } else{
+        var newClass=elem.getAttribute('class');
+        newClass+=" "+className;
+        elem.setAttribute('class', newClass)
+    }
+}
+//原生JS移除class属性的方法
+//这里使用正则表达式匹配目标元素中的class属性中的内容
+function removeClass(elem, className) {
+    var reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
+    elem.className=className.replace(reg, " ")
+}
 //笔记页脚本
 //iframe加载内容，对搜索引擎不友善
 //ajax加载的话导致样式覆盖，尴尬

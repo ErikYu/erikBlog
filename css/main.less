@@ -16,6 +16,7 @@
 body{
   min-width:960px;
 }
+//header部分样式
 header{
   .nav-bar{
     height: @navHeight;
@@ -40,15 +41,34 @@ header{
         height:@navHeight;
       }
     }
-
     ul li:hover{
       background-color: @navBgColorActive;
     }
-    #searchBox{
-      line-height: @searchBoxHeight;
+    .activeInput{
+      box-shadow: 0 0 5px 4px @navBgColorActive;
+    }
+    #searchZone{
+      float: right;
+      margin-right: 10px;
+      height:@searchBoxHeight;
       margin-top: @searchBoxMargintop;
-      margin-left: 100px;
-      border:none;
+      #searchBox{
+        line-height: @searchBoxHeight;
+        //margin-top: @searchBoxMargintop;
+        border:none;
+        width:200px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+      }
+      #searchBoxLogo{
+        float:right;
+        height:@searchBoxHeight;
+        width:@searchBoxHeight;
+        //margin-top: 10px;
+        background-color: #8D71BF;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+      }
     }
   }
   #banner{
