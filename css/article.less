@@ -1,0 +1,26 @@
+@import "main";
+/*正文文章总体样式*/
+article.blog{
+  width:1060px;
+  margin:0 auto;
+  /*右边内容蓝设置*/
+  .content-col{
+    width:860px;
+    float: right;
+    height:1000px;
+    border:none;
+  }
+  /*左边标题栏设置*/
+  .title-col{
+    overflow: hidden;
+    border-right:@testBorder;
+    height:1000px;
+    ul li{
+      margin-bottom: 10px;
+    }
+    ul li:hover{
+      background-color: #6f5499;
+      cursor: pointer;
+    }
+  }
+}

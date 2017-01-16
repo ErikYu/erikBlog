@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JsOOP</title>
+    <link rel="shortcut icon" href="img/minion.png">
+    <link rel="stylesheet/less" type="text/css" href="css/main.less">
+    <link rel="stylesheet/less" type="text/css" href="css/article.less">
+</head>
+<body>
+
+    <header>
+        <nav class="nav-bar">
+            <h1>鱼小窝</h1>
+            <ul>
+                <li><a href="index.html">注释</a></li>
+                <li><a href="#">皮卡</a></li>
+                <li><a href="#">咕噜</a></li>
+                <li></li>
+            </ul>
+            <input id="searchBox" type="text" value="你想搜索的内容" />
+        </nav>
+    </header>
+    <article class="blog">
+        <iframe class="content-col" src="jsoopintro.html">
+            面向对象的JAVASCRIT
+        </iframe>
+        <div class="title-col">
+            <ul>
+                <li href="jsoopintro.html">
+                    <h3>JSOOP综述</h3>
+                    <p>综合概括javascript面向对象编程</p>
+                </li>
+                <li href="jsoopchpt2.html">
+                    <h3>JS基本语法</h3>
+                    <p>涵盖基本数据类型、数组、循环及条件表达式</p>
+                </li>
+                <li href="jsoopchpt3.html">
+                    <h3>函数</h3>
+                    <p>涵盖基本数据类型、数组、循环及条件表达式</p>
+                </li>
+                <li href="jsoopchpt4.html">
+                    <h3>对象</h3>
+                    <p>涵盖基本数据类型、数组、循环及条件表达式</p>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <!--以下为页脚部分-->
+    <footer>
+        <div id="adviceZone">
+            <p>Please contact me:</p>
+            <form method="post">
+                <p>
+                    <label for="email">Your email: </label>
+                    <input name="email" id="email" type="text">
+                </p>
+                <p>
+                    <label for="advice">Your advice: </label>
+                    <textarea name="advice" id="advice" cols="40" rows="6"></textarea>
+                </p>
+                <button type="submit">SEND</button>
+            </form>
+        </div>
+        <div class="thx">
+            <p>Powered by gh-pages</p>
+            <p>Github：</p>
+        </div>
+        <div class="community">
+            <ul>
+                <li><a href="https://github.com/erikyu" target="_blank"><img src="img/github.png" class="community-logo" /></a></li>
+                <li><a href="mailto:erikyuyz@gmail.com"><img src="img/google.png" class="community-logo" /></a></li>
+                <li><a href="mailto:erikyuyz@gmail.com"><img src="img/weibo.png" class="community-logo" /></a></li>
+            </ul>
+        </div>
+    </footer>
+    <script src="js/less.js"></script>
+    <script src="js/jquery-3.1.0.js"></script>
+    <script src="js/blog.js"></script>
+    <script>
+//        $(function () {
+//            var button=$('.blog .title-col ul li');
+//            var content=$('.blog iframe');
+//            button.click(function () {
+//                content.attr({"src":$(this).attr("href")})
+//            })
+//        })
+    </script>
+</body>
+</html>

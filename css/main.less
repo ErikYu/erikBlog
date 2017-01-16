@@ -1,0 +1,163 @@
+/*LESS代码*/
+@navHeight: 50px;
+@navBgColor: #5b4282;
+@navBgColor2: #6f5499;
+@navBgColorActive: #493065;
+@testBorder: 1px solid #cccccc;
+@searchBoxHeight: 30px;
+@searchBoxMargintop: @navHeight/2 - @searchBoxHeight/2;
+*{
+  font-family:"Microsoft YaHei";
+  text-decoration: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+body{
+  min-width:960px;
+}
+header{
+  .nav-bar{
+    height: @navHeight;
+    background: linear-gradient(@navBgColor, @navBgColor2);
+    h1{
+      color: #d579c6;
+      line-height: @navHeight;
+      float: left;
+      padding: 0 20px 0 10px;
+      letter-spacing: 10px;
+    }
+
+    ul li{
+      display: inline-block;
+      float: left;
+      line-height: @navHeight;
+      padding: 0 5px;
+      a{
+        color: #ffffff;
+        line-height: @navHeight;
+        display: inline-block;
+        height:@navHeight;
+      }
+    }
+
+    ul li:hover{
+      background-color: @navBgColorActive;
+    }
+    #searchBox{
+      line-height: @searchBoxHeight;
+      margin-top: @searchBoxMargintop;
+      margin-left: 100px;
+      border:none;
+    }
+  }
+  #banner{
+    width: 100%;
+    background: url("../img/img3.png") no-repeat;
+    //filter: alpha(opacity=70);
+    //opacity: 0.7;
+    background-size: 100% auto;
+    .intro{
+      color: #FFFFFF;
+    }
+  }
+}
+//正文代码
+.narL{
+  height: 300px;
+  width:300px;
+  float: left;
+}
+.widR{
+  overflow: hidden;
+  height:300px;
+}
+#pikachu{
+  background-color: #e5a228;
+  .book li{
+    background-color: #f1bf26;
+  }
+}
+#gold{
+  background-color: #3399ff;
+  .book li{
+    background-color: #77B8FF;
+  }
+}
+#htmlcontent{
+  background-color: #e44f27;
+  .book li{
+    background-color: #ec652b;
+  }
+}
+.content-prev{
+  text-align: left;
+  margin-top: 30px;
+  h2{
+    padding-left: 15px;
+  }
+}
+.nar-img{
+  width:300px;
+  height:300px;
+}
+.book{
+  text-align: center;
+}
+article .book li{
+  float: left;
+  margin: 10px;
+  font-size: 20px;
+  padding: 5px 5px 0 0;
+  width:150px;
+
+}
+article .book li:hover{
+
+  cursor: pointer;
+}
+article .book li ul{
+  display: none;
+}
+article .book li ul li{
+   float: none;
+   margin:0;
+   padding:2px 5px 0 0;
+   width:150px;
+  a{
+    display: block;
+    width:150px;
+    color: #ffffff;
+  }
+}
+article .book li ul li:hover{
+  display: block;
+  background-color: green !important;
+}
+
+//footer样式代码
+footer{
+  color: #ffffff;
+  height:300px;
+  background-color: #4c4a48;
+  padding: 20px;
+}
+footer #adviceZone{
+  width: 150px;
+  float: left;
+}
+.community{
+  float: right;
+}
+.community ul li{
+  margin: 10px 0;
+}
+.thx{
+  text-align: center;
+  position: relative;
+  top:250px;
+}
+.community-logo{
+  display: block;
+  width:40px;
+}

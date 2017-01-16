@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="shortcut icon" href="img/minion.png">
+    <link rel="stylesheet/less" type="text/css" href="css/main.less">
+
+</head>
+<body>
+<header>
+    <nav class="nav-bar">
+        <h1>鱼小窝</h1>
+        <ul>
+            <li><a href="index.html">注释</a></li>
+            <li><a href="#">皮卡</a></li>
+            <li><a href="#">咕噜</a></li>
+            <li></li>
+        </ul>
+        <input id="searchBox" type="text" value="你想搜索的内容" />
+    </nav>
+    <div id="banner">
+        <div class="intro">
+            <h2>俞亦钊</h2>
+            <p></p>
+        </div>
+    </div>
+</header>
+<!--以下为正文部分-->
+<article>
+    <div class="sec-1">
+        <div class="narL">
+            <img class="nar-img" src="img/js.png" />
+        </div>
+        <div class="widR" id="pikachu">
+            <div class="content-prev">
+                <h2>Javascript</h2>
+                <hr />
+                <ul class="book">
+                    <li>
+                        <a>DOM编程艺术</a>
+                    </li>
+                    <li>高级程序设计</li>
+                    <li onmouseover="showsub(this)" onmouseout="hidesub(this)"><a>锋利的jQuery</a>
+                        <ul>
+                            <li><a href="">选择器</a></li>
+                            <li><a href="">DOM操作</a></li>
+                            <li><a href="">事件和动画</a></li>
+                            <li><a href="">表单表格的操作</a></li>
+                            <li><a href="">Ajax应用</a></li>
+                            <li><a href="">序列化元素</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--以下为CSS部分-->
+    <div class="sec-1">
+        <div class="narL">
+            <img class="nar-img" src="img/css.png" />
+        </div>
+        <div class="widR" id="gold">
+            <div class="content-prev">
+                <h2>CSS</h2>
+                <hr />
+                <ul class="book">
+                    <li>
+                        <a>CSS权威指南</a>
+                    </li>
+                    <li onmouseover="showsub(this)" onmouseout="hidesub(this)"><a>高效开发实战</a>
+                        <ul>
+                            <li><a href="">选择器</a></li>
+                            <li><a href="">DOM操作</a></li>
+                            <li><a href="">事件和动画</a></li>
+                            <li><a href="">表单表格的操作</a></li>
+                            <li><a href="">Ajax应用</a></li>
+                            <li><a href="">序列化元素</a></li>
+                        </ul>
+                    </li>
+                    <li>ng权威指南</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--以下为HTML部分-->
+    <div class="sec-1">
+        <div class="narL">
+            <img class="nar-img" src="img/html.png" />
+        </div>
+        <div class="widR" id="htmlcontent">
+            <div class="content-prev">
+                <h2>HTML</h2>
+                <hr />
+                讲道理我也不知道这里要放点啥
+            </div>
+        </div>
+    </div>
+</article>
+<!--以下为页脚部分-->
+<footer>
+    <div id="adviceZone">
+        <p>Please contact me:</p>
+        <form method="post">
+            <p>
+                <label for="email">Your email: </label>
+                <input name="email" id="email" type="text">
+            </p>
+            <p>
+                <label for="advice">Your advice: </label>
+                <textarea name="advice" id="advice" cols="40" rows="6"></textarea>
+            </p>
+                <button type="submit">SEND</button>
+        </form>
+    </div>
+    <div class="thx">
+        <p>Powered by gh-pages</p>
+        <p>Github：</p>
+    </div>
+    <div class="community">
+        <ul>
+            <li><a href="https://github.com/erikyu" target="_blank"><img src="img/github.png" class="community-logo" /></a></li>
+            <li><a href="mailto:erikyuyz@gmail.com"><img src="img/google.png" class="community-logo" /></a></li>
+            <li><a href="mailto:erikyuyz@gmail.com"><img src="img/weibo.png" class="community-logo" /></a></li>
+        </ul>
+    </div>
+</footer>
+<script src="js/less.js"></script>
+<script src="js/jquery-3.1.0.js"></script>
+<script src="js/blog.js"></script>
+</body>
+</html>
