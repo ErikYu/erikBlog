@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="shortcut icon" href="img/minion.png">
+    <link rel="stylesheet/less" type="text/css" href="css/main.less">
+    <link rel="stylesheet/less" type="text/css" href="css/gallery.less">
+    <link rel="stylesheet" type="text/css" href="css/icons.css">
+</head>
+<body>
+<header>
+    <nav class="nav-bar">
+        <h1>鱼小窝</h1>
+        <ul>
+            <li><a href="index.html">主页</a></li>
+            <li><a href="#">皮卡</a></li>
+            <li><a href="#">咕噜</a></li>
+            <li></li>
+        </ul>
+        <div id="searchZone">
+            <input id="searchBox" type="text" name="searchBox" value="输入你想搜索的内容" />
+            <span class="demoSpan1" id="searchBoxLogo"></span>
+        </div>
+    </nav>
+</header>
+<!--以下为正文部分-->
+<article>
+    <div class="img-container">
+        <div class="img-outer">
+            <div class="img-wrapper">
+                <img src="img/18.jpg">
+            </div>
+        </div>
+
+        <div style="clear: both"></div>   <!--清除浮动-->
+    </div>
+</article>
+<!--以下为页脚部分-->
+<footer>
+    <div id="adviceZone">
+        <p>Please contact me:</p>
+        <form method="post">
+            <p>
+                <label for="email">Your email: </label>
+                <input name="email" id="email" type="text">
+            </p>
+            <p>
+                <label for="advice">Your advice: </label>
+                <textarea name="advice" id="advice" cols="40" rows="6"></textarea>
+            </p>
+            <button type="submit">SEND</button>
+        </form>
+    </div>
+    <div class="thx">
+        <p>Powered by gh-pages</p>
+        <p>Github：</p>
+    </div>
+    <div class="community">
+        <ul>
+            <li><a href="https://github.com/erikyu" target="_blank"><img src="img/github.png" class="community-logo" /></a></li>
+            <li><a href="mailto:erikyuyz@gmail.com"><img src="img/google.png" class="community-logo" /></a></li>
+            <li><a href="mailto:erikyuyz@gmail.com"><img src="img/weibo.png" class="community-logo" /></a></li>
+        </ul>
+    </div>
+</footer>
+<script src="js/less.js"></script>
+<script src="js/jquery-3.1.0.js"></script>
+<script src="js/blog.js"></script>
+</body>
+</html>
