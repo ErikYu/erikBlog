@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FlappyLetter</title>
+    <link rel="stylesheet/less" type="text/css" href="css/gameBox.less">
+</head>
+<body>
+    <div class="gameBox">
+        <div class="letterFly">F</div>
+    </div>
+
+    <script src="js/less.js"></script>
+    <script src="js/jquery-3.1.0.js"></script>
+    <script src="js/jQuery-easing.js"></script>
+
+<script>
+    $(function () {
+        $(window).keypress(function () {
+            var elem=$('.letterFly');
+            var oldLeft=parseInt(elem.css('left'))+200;
+            console.log(oldLeft)
+            elem.animate({
+                left: oldLeft
+            }, {
+                easing: "easeOutCubic",
+                duration: 600
+            })
+        })
+    })
+
+</script>
+</body>
+</html>

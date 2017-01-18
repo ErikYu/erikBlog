@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CHPT1-2jQuery选择器</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+<style type="text/css">
+.highlight  { background: #ffffff; }
+.highlight .c { color: #999988; font-style: italic } /* Comment */
+.highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+.highlight .k { font-weight: bold } /* Keyword */
+.highlight .o { font-weight: bold } /* Operator */
+.highlight .cm { color: #999988; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #999999; font-weight: bold } /* Comment.Preproc */
+.highlight .c1 { color: #999988; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+.highlight .gd .x { color: #000000; background-color: #ffaaaa } /* Generic.Deleted.Specific */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #aa0000 } /* Generic.Error */
+.highlight .gh { color: #999999 } /* Generic.Heading */
+.highlight .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+.highlight .gi .x { color: #000000; background-color: #aaffaa } /* Generic.Inserted.Specific */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #555555 } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #aaaaaa } /* Generic.Subheading */
+.highlight .gt { color: #aa0000 } /* Generic.Traceback */
+.highlight .kc { font-weight: bold } /* Keyword.Constant */
+.highlight .kd { font-weight: bold } /* Keyword.Declaration */
+.highlight .kp { font-weight: bold } /* Keyword.Pseudo */
+.highlight .kr { font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #445588; font-weight: bold } /* Keyword.Type */
+.highlight .m { color: #009999 } /* Literal.Number */
+.highlight .s { color: #d14 } /* Literal.String */
+.highlight .na { color: #008080 } /* Name.Attribute */
+.highlight .nb { color: #0086B3 } /* Name.Builtin */
+.highlight .nc { color: #445588; font-weight: bold } /* Name.Class */
+.highlight .no { color: #008080 } /* Name.Constant */
+.highlight .ni { color: #800080 } /* Name.Entity */
+.highlight .ne { color: #990000; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #990000; font-weight: bold } /* Name.Function */
+.highlight .nn { color: #555555 } /* Name.Namespace */
+.highlight .nt { color: #000080 } /* Name.Tag */
+.highlight .nv { color: #008080 } /* Name.Variable */
+.highlight .ow { font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #009999 } /* Literal.Number.Float */
+.highlight .mh { color: #009999 } /* Literal.Number.Hex */
+.highlight .mi { color: #009999 } /* Literal.Number.Integer */
+.highlight .mo { color: #009999 } /* Literal.Number.Oct */
+.highlight .sb { color: #d14 } /* Literal.String.Backtick */
+.highlight .sc { color: #d14 } /* Literal.String.Char */
+.highlight .sd { color: #d14 } /* Literal.String.Doc */
+.highlight .s2 { color: #d14 } /* Literal.String.Double */
+.highlight .se { color: #d14 } /* Literal.String.Escape */
+.highlight .sh { color: #d14 } /* Literal.String.Heredoc */
+.highlight .si { color: #d14 } /* Literal.String.Interpol */
+.highlight .sx { color: #d14 } /* Literal.String.Other */
+.highlight .sr { color: #009926 } /* Literal.String.Regex */
+.highlight .s1 { color: #d14 } /* Literal.String.Single */
+.highlight .ss { color: #990073 } /* Literal.String.Symbol */
+.highlight .bp { color: #999999 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #008080 } /* Name.Variable.Class */
+.highlight .vg { color: #008080 } /* Name.Variable.Global */
+.highlight .vi { color: #008080 } /* Name.Variable.Instance */
+.highlight .il { color: #009999 } /* Literal.Number.Integer.Long */
+.pl-c {
+    color: #969896;
+}
+
+.pl-c1,.pl-mdh,.pl-mm,.pl-mp,.pl-mr,.pl-s1 .pl-v,.pl-s3,.pl-sc,.pl-sv {
+    color: #0086b3;
+}
+
+.pl-e,.pl-en {
+    color: #795da3;
+}
+
+.pl-s1 .pl-s2,.pl-smi,.pl-smp,.pl-stj,.pl-vo,.pl-vpf {
+    color: #333;
+}
+
+.pl-ent {
+    color: #63a35c;
+}
+
+.pl-k,.pl-s,.pl-st {
+    color: #a71d5d;
+}
+
+.pl-pds,.pl-s1,.pl-s1 .pl-pse .pl-s2,.pl-sr,.pl-sr .pl-cce,.pl-sr .pl-sra,.pl-sr .pl-sre,.pl-src,.pl-v {
+    color: #df5000;
+}
+
+.pl-id {
+    color: #b52a1d;
+}
+
+.pl-ii {
+    background-color: #b52a1d;
+    color: #f8f8f8;
+}
+
+.pl-sr .pl-cce {
+    color: #63a35c;
+    font-weight: bold;
+}
+
+.pl-ml {
+    color: #693a17;
+}
+
+.pl-mh,.pl-mh .pl-en,.pl-ms {
+    color: #1d3e81;
+    font-weight: bold;
+}
+
+.pl-mq {
+    color: #008080;
+}
+
+.pl-mi {
+    color: #333;
+    font-style: italic;
+}
+
+.pl-mb {
+    color: #333;
+    font-weight: bold;
+}
+
+.pl-md,.pl-mdhf {
+    background-color: #ffecec;
+    color: #bd2c00;
+}
+
+.pl-mdht,.pl-mi1 {
+    background-color: #eaffea;
+    color: #55a532;
+}
+
+.pl-mdr {
+    color: #795da3;
+    font-weight: bold;
+}
+
+.pl-mo {
+    color: #1d3e81;
+}
+.task-list {
+padding-left:10px;
+margin-bottom:0;
+}
+
+.task-list li {
+    margin-left: 20px;
+}
+
+.task-list-item {
+list-style-type:none;
+padding-left:10px;
+}
+
+.task-list-item label {
+font-weight:400;
+}
+
+.task-list-item.enabled label {
+cursor:pointer;
+}
+
+.task-list-item+.task-list-item {
+margin-top:3px;
+}
+
+.task-list-item-checkbox {
+display:inline-block;
+margin-left:-20px;
+margin-right:3px;
+vertical-align:1px;
+}
+</style>
+</head>
+<body>
+<h1>CHPT1-2--jQuery简介和jQuery选择器</h1>
+<p>jQuery对象和DOM对象：<br>
+DOM对象：document object model<br>
+jQuery对象：通过jquery包装的DOM对象后产生的对象。<br>
+两个对象可以相互转换，jQuery对象是一个类似于数组的对象，可以通过[index]获得DOM对象</p>
+<h3>jQuery选择器的优势</h3>
+<hr>
+<ol>
+<li>结构：$("");</li>
+<li>无需考虑兼容性</li>
+<li>完善的处理机制；</li>
+</ol>
+<p><strong>用jQuery获取网页中不存在的元素也不会报错</strong>；$("")获取的永远是<strong>对象</strong>，因此当需要使用jQuery检查某个元素是否存在时，应该<strong>检查获取的元素的长度</strong>：</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">if</span> (<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#dd<span class="pl-pds">"</span></span>).<span class="pl-c1">length</span><span class="pl-k">&gt;</span><span class="pl-c1">0</span>) {
+    <span class="pl-c"><span class="pl-c">//</span>do something</span>
+}</pre></div>
+<p>　　或者转化为DOM对象：</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">if</span>(<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#dd<span class="pl-pds">"</span></span>)[<span class="pl-c1">0</span>]){
+    <span class="pl-c"><span class="pl-c">//</span>do something</span>
+}</pre></div>
+<h3>jQuery选择器</h3>
+<hr>
+<h4>2.3.1 基本选择器</h4>
+<table>
+<thead>
+<tr>
+<th align="left">选择器</th>
+<th align="left">描述</th>
+<th align="left">返回</th>
+<th align="left">实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">$("#id")</td>
+<td align="left">根据id返回一个元素</td>
+<td align="left">单个元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$(".class")</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("p")</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("*")</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("div, span, p.class")</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr></tbody></table>
+<h4>2.3.2 层次选择器</h4>
+<table>
+<thead>
+<tr>
+<th align="left">选择器</th>
+<th align="left">描述</th>
+<th align="left">返回</th>
+<th align="left">实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">$("div span")</td>
+<td align="left">返回div元素里所有的span后代元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("div &gt; span")</td>
+<td align="left">返回div元素中的span子元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$(".one + div")</td>
+<td align="left">返回紧跟class为one的下一个div同辈元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("#two~div")</td>
+<td align="left">返回id为two元素<strong>后面的所有</strong>同辈div元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr></tbody></table>
+<p>这里有几个jQuery方法：next()方法可以替代$("prev + next")选择器；<br>
+nextAll()方法可以替代$("prev~siblings")选择器；</p>
+<h4>2.3.3 过滤选择器</h4>
+<p>语法与CSS伪类选择器相同；主要有基本选择器，内容过滤选择器，</p>
+<ol>
+<li>基本选择器</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="left">选择器</th>
+<th align="left">描述</th>
+<th align="left">返回</th>
+<th align="left">实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">$("div:first")</td>
+<td align="left">选取第一个div元素</td>
+<td align="left">单个元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("div:last")</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("div:not(.myClass)")</td>
+<td align="left">选取class不是myClass的div元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("div:even")</td>
+<td align="left">返回索引是偶数的div元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("div:odd")</td>
+<td align="left">返回索引是奇数的div元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("div:eq(3)")</td>
+<td align="left">返回索引是3的div元素</td>
+<td align="left">单个元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("div:gt(3)")</td>
+<td align="left">返回索引大于3的div元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("div:lt(3)")</td>
+<td align="left">返回索引小于3的div元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$(":header")</td>
+<td align="left">返回所有的header元素，如h1, h2...</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$(":animated")</td>
+<td align="left">返回当前正在执行动画的所有元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$(":focus")</td>
+<td align="left">当前获得焦点的元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr></tbody></table>
+<ol start="2">
+<li>内容过滤选择器</li>
+</ol>
+<p>内容过滤选择器主要体现在它所包含的子元素或文本内容上。</p>
+<table>
+<thead>
+<tr>
+<th align="left">选择器</th>
+<th align="left">描述</th>
+<th align="left">返回</th>
+<th align="left">实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">$("div:contains("我")")</td>
+<td align="left">返回含有文本“我”的div元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("div:empty")</td>
+<td align="left">选取不包含子元素或文本的空元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("div:has(selector)")</td>
+<td align="left">选取包含选择器所匹配元素的元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$(":parent")</td>
+<td align="left">选取含有子元素或者文本的元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr></tbody></table>
+<ol start="3">
+<li>可见性过滤选择器</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="left">选择器</th>
+<th align="left">描述</th>
+<th align="left">返回</th>
+<th align="left">实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">$(":hidden")</td>
+<td align="left">选取所有不可见的元素，包括visiblity: hidden和display: none</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$(":visible")</td>
+<td align="left">选取所有可见元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr></tbody></table>
+<ol start="4">
+<li>属性过滤选择器</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="left">选择器</th>
+<th align="left">描述</th>
+<th align="left">返回</th>
+<th align="left">实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">$("div[id]")</td>
+<td align="left">选取拥有属性id的div元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("div[id=test]")</td>
+<td align="left">选取id为test的div元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("div[id!=test]")</td>
+<td align="left">选取id值不是test的div元素，其中不含id属性的元素也会被选取</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("div[title^=test]")</td>
+<td align="left">选取title属性以test开始的元素</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("div[title$=test]")</td>
+<td align="left">选取title属性以test结束的元素</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("div[title*=test]")</td>
+<td align="left">选取title属性值含有test的元素</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("div[title</td>
+<td align="left">=test]")</td>
+<td align="left">选取属性等于给定字符串或者以该字符串为前缀的元素</td>
+<td align="left">集合元素</td>
+</tr>
+<tr>
+<td align="left">$("div[title~=test]")</td>
+<td align="left">选取属性值用空格分开的值中有test的元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("div[id][title=test]")</td>
+<td align="left">选取有id属性且title属性是test的div元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr></tbody></table>
+<ol start="5">
+<li>子元素过滤选择器</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="left">选择器</th>
+<th align="left">描述</th>
+<th align="left">返回</th>
+<th align="left">实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">$("div :nth-child(index)")</td>
+<td align="left">选取每个div元素下的第index个子元素，index从1开始</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("div :first-child")</td>
+<td align="left">div下的第一个子元素</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("div :last-child")</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("div :only-child")</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr></tbody></table>
+<p>:nth-child(index)是很常用的子元素过滤选择器，详细功能如下：</p>
+<blockquote>
+<ol>
+<li>:nth-child(even): 选取每个父元素下面索引是偶数的子元素；</li>
+<li>:nth-child(odd): 选取每个父元素下面索引是奇数的子元素；</li>
+<li>:nth-child(2): 选取每个父元素下面索引是2的子元素；</li>
+<li>:nth-child(3n+1): 选取每个父元素下面索引是3n+1的子元素，<strong>n从1开始取</strong>，不是0！！！</li>
+</ol>
+</blockquote>
+<ol start="6">
+<li>表单对象属性过滤选择器</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="left">选择器</th>
+<th align="left">描述</th>
+<th align="left">返回</th>
+<th align="left">实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">$("#form1 :enabled")</td>
+<td align="left">选取id为form1的表单的所有可用元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("#form2 :disabled")</td>
+<td align="left">选取id为form2的表单的所有不可用元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("input:checked")</td>
+<td align="left">选取所有被选中的input元素，或者是其他单选框/复选框</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">$("select option:selected")</td>
+<td align="left">选取所有被选中的选项元素，主要用于下拉列表</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr></tbody></table>
+<p>第一个和第二个可用/不可用元素=&gt;  <code>&lt;input diabled="disabled"&gt;</code></p>
+<h4>2.3.4 表单选择器</h4>
+<table>
+<thead>
+<tr>
+<th align="left">选择器</th>
+<th align="left">描述</th>
+<th align="left">返回</th>
+<th align="left">实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">$("#form1 :input")</td>
+<td align="left">选取id为form1的表单内的所有, &lt;textarea&gt;, 和元素</td>
+<td align="left">集合元素</td>
+<td align="left"></td>
+</tr></tbody></table>
+<h3>选择器的一些注意事项：</h3>
+<hr>
+<ol>
+<li>属性中含有特殊字符时需要使用转移符   \</li>
+<li>属性中的@符号</li>
+<li>选择器中的空格，加空格在后代元素中选取；</li>
+</ol>
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

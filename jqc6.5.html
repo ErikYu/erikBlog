@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CHPT6.5jQuery中的Ajax</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+<style type="text/css">
+.highlight  { background: #ffffff; }
+.highlight .c { color: #999988; font-style: italic } /* Comment */
+.highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+.highlight .k { font-weight: bold } /* Keyword */
+.highlight .o { font-weight: bold } /* Operator */
+.highlight .cm { color: #999988; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #999999; font-weight: bold } /* Comment.Preproc */
+.highlight .c1 { color: #999988; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+.highlight .gd .x { color: #000000; background-color: #ffaaaa } /* Generic.Deleted.Specific */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #aa0000 } /* Generic.Error */
+.highlight .gh { color: #999999 } /* Generic.Heading */
+.highlight .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+.highlight .gi .x { color: #000000; background-color: #aaffaa } /* Generic.Inserted.Specific */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #555555 } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #aaaaaa } /* Generic.Subheading */
+.highlight .gt { color: #aa0000 } /* Generic.Traceback */
+.highlight .kc { font-weight: bold } /* Keyword.Constant */
+.highlight .kd { font-weight: bold } /* Keyword.Declaration */
+.highlight .kp { font-weight: bold } /* Keyword.Pseudo */
+.highlight .kr { font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #445588; font-weight: bold } /* Keyword.Type */
+.highlight .m { color: #009999 } /* Literal.Number */
+.highlight .s { color: #d14 } /* Literal.String */
+.highlight .na { color: #008080 } /* Name.Attribute */
+.highlight .nb { color: #0086B3 } /* Name.Builtin */
+.highlight .nc { color: #445588; font-weight: bold } /* Name.Class */
+.highlight .no { color: #008080 } /* Name.Constant */
+.highlight .ni { color: #800080 } /* Name.Entity */
+.highlight .ne { color: #990000; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #990000; font-weight: bold } /* Name.Function */
+.highlight .nn { color: #555555 } /* Name.Namespace */
+.highlight .nt { color: #000080 } /* Name.Tag */
+.highlight .nv { color: #008080 } /* Name.Variable */
+.highlight .ow { font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #009999 } /* Literal.Number.Float */
+.highlight .mh { color: #009999 } /* Literal.Number.Hex */
+.highlight .mi { color: #009999 } /* Literal.Number.Integer */
+.highlight .mo { color: #009999 } /* Literal.Number.Oct */
+.highlight .sb { color: #d14 } /* Literal.String.Backtick */
+.highlight .sc { color: #d14 } /* Literal.String.Char */
+.highlight .sd { color: #d14 } /* Literal.String.Doc */
+.highlight .s2 { color: #d14 } /* Literal.String.Double */
+.highlight .se { color: #d14 } /* Literal.String.Escape */
+.highlight .sh { color: #d14 } /* Literal.String.Heredoc */
+.highlight .si { color: #d14 } /* Literal.String.Interpol */
+.highlight .sx { color: #d14 } /* Literal.String.Other */
+.highlight .sr { color: #009926 } /* Literal.String.Regex */
+.highlight .s1 { color: #d14 } /* Literal.String.Single */
+.highlight .ss { color: #990073 } /* Literal.String.Symbol */
+.highlight .bp { color: #999999 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #008080 } /* Name.Variable.Class */
+.highlight .vg { color: #008080 } /* Name.Variable.Global */
+.highlight .vi { color: #008080 } /* Name.Variable.Instance */
+.highlight .il { color: #009999 } /* Literal.Number.Integer.Long */
+.pl-c {
+    color: #969896;
+}
+
+.pl-c1,.pl-mdh,.pl-mm,.pl-mp,.pl-mr,.pl-s1 .pl-v,.pl-s3,.pl-sc,.pl-sv {
+    color: #0086b3;
+}
+
+.pl-e,.pl-en {
+    color: #795da3;
+}
+
+.pl-s1 .pl-s2,.pl-smi,.pl-smp,.pl-stj,.pl-vo,.pl-vpf {
+    color: #333;
+}
+
+.pl-ent {
+    color: #63a35c;
+}
+
+.pl-k,.pl-s,.pl-st {
+    color: #a71d5d;
+}
+
+.pl-pds,.pl-s1,.pl-s1 .pl-pse .pl-s2,.pl-sr,.pl-sr .pl-cce,.pl-sr .pl-sra,.pl-sr .pl-sre,.pl-src,.pl-v {
+    color: #df5000;
+}
+
+.pl-id {
+    color: #b52a1d;
+}
+
+.pl-ii {
+    background-color: #b52a1d;
+    color: #f8f8f8;
+}
+
+.pl-sr .pl-cce {
+    color: #63a35c;
+    font-weight: bold;
+}
+
+.pl-ml {
+    color: #693a17;
+}
+
+.pl-mh,.pl-mh .pl-en,.pl-ms {
+    color: #1d3e81;
+    font-weight: bold;
+}
+
+.pl-mq {
+    color: #008080;
+}
+
+.pl-mi {
+    color: #333;
+    font-style: italic;
+}
+
+.pl-mb {
+    color: #333;
+    font-weight: bold;
+}
+
+.pl-md,.pl-mdhf {
+    background-color: #ffecec;
+    color: #bd2c00;
+}
+
+.pl-mdht,.pl-mi1 {
+    background-color: #eaffea;
+    color: #55a532;
+}
+
+.pl-mdr {
+    color: #795da3;
+    font-weight: bold;
+}
+
+.pl-mo {
+    color: #1d3e81;
+}
+.task-list {
+padding-left:10px;
+margin-bottom:0;
+}
+
+.task-list li {
+    margin-left: 20px;
+}
+
+.task-list-item {
+list-style-type:none;
+padding-left:10px;
+}
+
+.task-list-item label {
+font-weight:400;
+}
+
+.task-list-item.enabled label {
+cursor:pointer;
+}
+
+.task-list-item+.task-list-item {
+margin-top:3px;
+}
+
+.task-list-item-checkbox {
+display:inline-block;
+margin-left:-20px;
+margin-right:3px;
+vertical-align:1px;
+}
+</style>
+</head>
+<body>
+<h1>CHPT6--jQuery和Ajax应用</h1>
+<h3>6.5 jQuery中的Ajax</h3>
+<hr>
+<p>jQuery对Ajax进行了封装，$.Ajax()是最底层的方法；<br>
+第二层是load(), $.get(), $.post()方法；<br>
+第三层是$.getScript和$.getJSON方法；</p>
+<h4>6.5.1. load()方法</h4>
+<p>从web服务器上获取静态的数据文件</p>
+<ol>
+<li>载入HTML文档</li>
+</ol>
+<p>　　结构：<strong>load(url[, data][, callback])</strong><br>
+　　url：请求HTML页面的URL地址</p>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>button<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>send<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>Ajax获取<span class="pl-pds">"</span></span> /&gt;
+&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>comment<span class="pl-pds">"</span></span>&gt;已有评论&lt;/<span class="pl-ent">div</span>&gt;
+&lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>resText&gt;&lt;/div&gt;</span></pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(<span class="pl-k">function</span>{
+    <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#send<span class="pl-pds">"</span></span>).click(function(){
+        <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#resText<span class="pl-pds">"</span></span>).<span class="pl-c1">load</span>(<span class="pl-s"><span class="pl-pds">"</span>test.html<span class="pl-pds">"</span></span>);
+    });
+});</pre></div>
+<p>　　以上.load()方法将test.html加载到主页面的div中</p>
+<ol start="2">
+<li>筛选载入的HTML文档</li>
+</ol>
+<p>　　load()方法中url参数的结构是"url selector"，例如"test.html .test"选取文档中的class为test的内容；</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#resText<span class="pl-pds">"</span></span>).<span class="pl-c1">load</span>(<span class="pl-s"><span class="pl-pds">"</span>test.html .para<span class="pl-pds">"</span></span>);</pre></div>
+<ol start="3">
+<li>传递参数</li>
+</ol>
+<p>　　load()方法的传递参数的方法根据data自动选择，如果没有参数传递，使用GET方法；如果有参数传递，使用POST方法。</p>
+<ol start="4">
+<li>回调函数</li>
+</ol>
+<p>　　load()方法的callback有三个参数，分别代表请求返回的内容、请求状态、XMLHttpRequest对象；</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#resText<span class="pl-pds">"</span></span>).<span class="pl-c1">load</span>(<span class="pl-s"><span class="pl-pds">"</span>test.html<span class="pl-pds">"</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">responseText</span>, <span class="pl-smi">textStatus</span>, <span class="pl-c1">XMLHttpRequest</span>){
+    <span class="pl-c"><span class="pl-c">//</span> responseText: 请求返回的内容</span>
+    <span class="pl-c"><span class="pl-c">//</span> textStatus: 请求状态，success error notmodified timeout四种</span>
+    <span class="pl-c"><span class="pl-c">//</span> XMLHttpRequest: 对象</span>
+})</pre></div>
+<p>在Ajax中，无论Ajax()请求是否成功，只要当请求完成（complete）后，回调函数（callback）就会触发。</p>
+<h4>6.5.2. $.get()和$.post()方法</h4>
+<p>$.get()和$.post()是jQuery中的<strong>全局函数</strong>；在此之前的方法都是对jQuery对象进行的操作；</p>
+<ol>
+<li>$.get()方法</li>
+</ol>
+<p>结构：<strong>$.get(url[, data][, callback][, type])</strong><br>
+url：请求的HTML页的URL地址；<br>
+data：Object，发至服务器的key/value值会作为QueryString附加到请求url中；<br>
+callback：Function，<strong>载入成功</strong>时回调函数，回调函数有两个参数data和textStatus；<br>
+type：服务器端返回内容的格式，包括xml，html，script，json，text，_default；</p>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">form</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>form1<span class="pl-pds">"</span></span> <span class="pl-e">action</span>=<span class="pl-s"><span class="pl-pds">"</span>#<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">p</span>&gt;评论: &lt;/<span class="pl-ent">p</span>&gt;
+    &lt;<span class="pl-ent">p</span>&gt;姓名: &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>username<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>username<span class="pl-pds">"</span></span> /&gt;&lt;/<span class="pl-ent">p</span>&gt;
+    &lt;<span class="pl-ent">p</span>&gt;内容: &lt;<span class="pl-ent">textarea</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>content<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>content<span class="pl-pds">"</span></span> <span class="pl-e">cols</span>=<span class="pl-s"><span class="pl-pds">"</span>20<span class="pl-pds">"</span></span> <span class="pl-e">cols</span>=<span class="pl-s"><span class="pl-pds">"</span>2<span class="pl-pds">"</span></span> &gt;&lt;/<span class="pl-ent">textarea</span>&gt;&lt;/<span class="pl-ent">p</span>&gt;
+&lt;<span class="pl-ent">p</span>&gt;&lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>button<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>提交<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>send<span class="pl-pds">"</span></span> /&gt;&lt;/<span class="pl-ent">p</span>&gt;
+    &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>comment<span class="pl-pds">"</span></span>&gt;已有评论：&lt;/<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>resText<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">form</span>&gt;</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(<span class="pl-k">function</span>(){
+    <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#send<span class="pl-pds">"</span></span>).<span class="pl-c1">click</span>(<span class="pl-k">function</span>(){
+<span class="pl-c"><span class="pl-c">//</span>      $.get(url , data , callback , type)</span>
+        <span class="pl-smi">$</span>.<span class="pl-c1">get</span>(<span class="pl-s"><span class="pl-pds">"</span>get1.php<span class="pl-pds">"</span></span> , {
+            username<span class="pl-k">:</span> <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#username<span class="pl-pds">"</span></span>).<span class="pl-en">val</span>(),
+            content<span class="pl-k">:</span> <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#content<span class="pl-pds">"</span></span>).<span class="pl-en">val</span>()
+        } , <span class="pl-k">function</span>(<span class="pl-smi">data</span>, <span class="pl-smi">textStatus</span>){
+<span class="pl-c"><span class="pl-c">//</span>data: 返回的内容，可以是HTML片段、XML文档、JSON文件等等</span>
+<span class="pl-c"><span class="pl-c">//</span>testStatus: 请求状态：success, error, notmodified, timeout</span>
+            <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#resText<span class="pl-pds">"</span></span>).<span class="pl-en">html</span>(data);
+        })
+    })
+})</pre></div>
+<ol start="2">
+<li>$.post()方法</li>
+</ol>
+<p>$.post()和$.get()的区别：</p>
+<ul>
+<li>GET请求会<strong>将参数跟在URL后</strong>进行传递，为POST请求则是作为<strong>HTTP消息的实体内容</strong>发给web服务器；区别在于对用于是否可见；</li>
+<li>GET请求对传输数据的大小有限制（&lt;2kb）；POST理论上没有限制；</li>
+<li>GET方式请求的数据会被浏览器缓存起来，有安全问题；</li>
+<li>在服务器端的获取也不同。在PHP中，$_GET[]和$_POST()；</li>
+</ul>
+<p>结构和使用方式与$.get()相同: <strong>$.post(url , data , callback , type)</strong></p>
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(<span class="pl-k">function</span>(){
+    <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#send<span class="pl-pds">"</span></span>).<span class="pl-c1">click</span>(<span class="pl-k">function</span>(){
+<span class="pl-c"><span class="pl-c">//</span>      $.post(url , data , callback , type)</span>
+        <span class="pl-smi">$</span>.<span class="pl-en">post</span>(<span class="pl-s"><span class="pl-pds">"</span>post1.php<span class="pl-pds">"</span></span> , {
+            username<span class="pl-k">:</span> <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#username<span class="pl-pds">"</span></span>).<span class="pl-en">val</span>(),
+            content<span class="pl-k">:</span> <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#content<span class="pl-pds">"</span></span>).<span class="pl-en">val</span>()
+        } , <span class="pl-k">function</span>(<span class="pl-smi">data</span>, <span class="pl-smi">textStatus</span>){
+            <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#resText<span class="pl-pds">"</span></span>).<span class="pl-en">html</span>(data);
+        })
+    })
+})</pre></div>
+<h4>6.5.3. $.getScript()和$.getJson()方法</h4>
+<ol>
+<li>$.getScript()方法</li>
+</ol>
+<p>使用$.getScript()加载js文件: <strong>$.getScript("test.js" , callback)</strong>，回调函数在js成功载入后执行；</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(<span class="pl-k">function</span>(){
+    <span class="pl-smi">$</span>.<span class="pl-en">getScript</span>(<span class="pl-s"><span class="pl-pds">"</span>jquery.color.js<span class="pl-pds">"</span></span> , <span class="pl-k">function</span>(){
+        <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#go<span class="pl-pds">"</span></span>).<span class="pl-c1">click</span>(<span class="pl-k">function</span>(){
+            <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>.block<span class="pl-pds">"</span></span>).<span class="pl-c1">animate</span>({backgroundColor<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>pink<span class="pl-pds">"</span></span>}, <span class="pl-c1">1000</span>)
+        })
+    })
+})</pre></div>
+<ol start="2">
+<li>$.getJSON()方法</li>
+</ol>
+<p>$.getJSON()用于加载JSON文件:<strong>$.getJSON(url , callback)</strong>，请求成功后调用回调函数</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(<span class="pl-k">function</span>(){
+    <span class="pl-smi">$</span>.<span class="pl-en">getJSON</span>(<span class="pl-s"><span class="pl-pds">"</span>test.json<span class="pl-pds">"</span></span> , <span class="pl-k">function</span>(<span class="pl-smi">data</span>){
+<span class="pl-c"><span class="pl-c">//</span>      data: 返回的数据</span>
+        <span class="pl-k">var</span> html<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>;
+        <span class="pl-smi">$</span>.<span class="pl-en">each</span>(data, <span class="pl-k">function</span>(<span class="pl-smi">commentIndex</span>, <span class="pl-smi">comment</span>){
+<span class="pl-c"><span class="pl-c">//</span>          commentIndex: 对象的成员或者数字的索引</span>
+<span class="pl-c"><span class="pl-c">//</span>          comment: 对应变量或内容</span>
+            html<span class="pl-k">+=</span><span class="pl-s"><span class="pl-pds">"</span>&lt;p&gt;<span class="pl-pds">"</span></span><span class="pl-k">+</span><span class="pl-smi">comment</span>.<span class="pl-smi">username</span><span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">"</span>: &lt;/p&gt;&lt;p&gt;<span class="pl-pds">"</span></span><span class="pl-k">+</span><span class="pl-smi">comment</span>.<span class="pl-c1">content</span><span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">"</span>&lt;/p&gt;<span class="pl-pds">"</span></span>
+        })
+        <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#resText<span class="pl-pds">"</span></span>).<span class="pl-en">html</span>(html);
+    })
+})</pre></div>
+<p>上面的代码中用到一个$.each()函数，这个区别于jQuery对象中的each()方法，它是一个全局函数，不操作jQuery对象；<br>
+<strong>$.each(data, function(index, content){})</strong><br>
+callback中的两个参数：<strong>对象的成员或者数组的索引、对应变量的内容</strong><br>
+data是<strong>要遍历的数组或者对象</strong>；</p>
+<blockquote>
+<p>JSONP跨域访问：page188。</p>
+</blockquote>
+<h4>6.5.4. $.ajax()方法</h4>
+<p>$.ajax()是jQuery最底层的AJAX实现：<strong>$.ajax(options)</strong><br>
+option是一个对象，包括了这个方法所需要的请求设置和回调函数等信息，所有的参数都是可选的；</p>
+<table>
+<thead>
+<tr>
+<th align="center">参数名称</th>
+<th align="center">类型</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">url</td>
+<td align="center">String</td>
+<td align="left">发送请求的地址</td>
+</tr>
+<tr>
+<td align="center">type</td>
+<td align="center">String</td>
+<td align="left">请求方式POST或GET，默认为GET</td>
+</tr>
+<tr>
+<td align="center">timeout</td>
+<td align="center">Number</td>
+<td align="left">设置请求超时时间</td>
+</tr>
+<tr>
+<td align="center">data</td>
+<td align="center">Object<br>/String</td>
+<td align="left">发送到服务器的数据<br>如果已经不是字符串，则自动转换为字符串，对象必须是{key:value}格式</td>
+</tr>
+<tr>
+<td align="center">dataType</td>
+<td align="center">String</td>
+<td align="left">预期服务器返回的数据类型；<br>xml:返回xml文档，可用jQuery处理；<br>html:返回纯文本html信息；包含的script标签会在插入DOM时执行；<br>script:返回纯文本JS代码；<br>json:<br>jsonp:<br>text:返回纯文本字符串；</td>
+</tr>
+<tr>
+<td align="center">beforeSend</td>
+<td align="center">Function</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">complete</td>
+<td align="center">Function</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">success</td>
+<td align="center">Function</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">error</td>
+<td align="center">Function</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">global</td>
+<td align="center">Boolean</td>
+<td align="left"></td>
+</tr></tbody></table>
+<p>eg1：$.getScript()的$.ajax()实现</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(<span class="pl-k">function</span>(){
+    <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#send<span class="pl-pds">"</span></span>).<span class="pl-c1">click</span>(<span class="pl-k">function</span>(){
+        <span class="pl-smi">$</span>.<span class="pl-en">ajax</span>({
+            type<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>GET<span class="pl-pds">"</span></span>,
+            url<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>test.js<span class="pl-pds">"</span></span>,
+            dataType<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>script<span class="pl-pds">"</span></span>
+        })
+    })
+})</pre></div>
+<p>eg2 上面$.getJSON()的$.ajax()实现</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">$</span>.<span class="pl-en">ajax</span>({
+    type<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>GET<span class="pl-pds">"</span></span>,
+    dataType<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>json<span class="pl-pds">"</span></span>,
+    url<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>test.json<span class="pl-pds">"</span></span>,
+    <span class="pl-en">success</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">data</span>){
+        <span class="pl-smi">$</span>.<span class="pl-en">each</span>(data, <span class="pl-k">function</span>(<span class="pl-smi">index</span>, <span class="pl-smi">content</span>){
+<span class="pl-c"><span class="pl-c">//</span>          获取content中的内容并操作</span>
+        })
+    }
+})</pre></div>
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

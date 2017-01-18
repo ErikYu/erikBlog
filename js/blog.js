@@ -101,11 +101,11 @@ function loadNote() {
     })
 }
 //相册页脚本
-//相册外框
+//相册外框及幕布
 function galleryLoad() {
     if(!document.getElementsByClassName('img-wrapper')) return false;
     var elem=document.getElementsByClassName('img-wrapper');
-    for(i in elem){
+    for(var i in elem){
         elem[i].onmouseover=function () {
             this.childNodes[1].style.display='block';
             this.parentNode.style.visibility='visible';
@@ -116,7 +116,3 @@ function galleryLoad() {
         }
     }
 }
-//相册幕布
-// function galleryCover() {
-//
-// }
